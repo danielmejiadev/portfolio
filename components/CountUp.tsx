@@ -2,7 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 
-export default function CountUp({ target }: { target: number }) {
+interface CountUpProps {
+  target: number;
+}
+
+export default function CountUp({ target }: CountUpProps) {
   const [value, setValue] = useState(0);
   const ref = useRef<HTMLSpanElement | null>(null);
 

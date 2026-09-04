@@ -2,15 +2,13 @@
 
 import { useEffect, useRef, type ElementType, type ReactNode } from "react";
 
-export default function Reveal({
-  children,
-  className = "",
-  as = "div",
-}: {
+interface RevealProps {
   children: ReactNode;
   className?: string;
   as?: ElementType;
-}) {
+}
+
+export default function Reveal({ children, className = "", as = "div" }: RevealProps) {
   const ref = useRef<HTMLElement | null>(null);
 
   useEffect(() => {

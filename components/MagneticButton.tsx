@@ -2,17 +2,14 @@
 
 import { useRef, type ReactNode } from "react";
 
-export default function MagneticButton({
-  href,
-  children,
-  className = "",
-  strength = 0.3,
-}: {
+interface MagneticButtonProps {
   href: string;
   children: ReactNode;
   className?: string;
   strength?: number;
-}) {
+}
+
+export default function MagneticButton({ href, children, className = "", strength = 0.3 }: MagneticButtonProps) {
   const outerRef = useRef<HTMLAnchorElement | null>(null);
   const innerRef = useRef<HTMLSpanElement | null>(null);
   const state = useRef({ tx: 0, ty: 0, cx: 0, cy: 0, raf: 0 });

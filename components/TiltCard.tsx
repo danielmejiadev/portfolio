@@ -2,13 +2,12 @@
 
 import { useRef, type ReactNode } from "react";
 
-export default function TiltCard({
-  children,
-  className = "",
-}: {
+interface TiltCardProps {
   children: ReactNode;
   className?: string;
-}) {
+}
+
+export default function TiltCard({ children, className = "" }: TiltCardProps) {
   const ref = useRef<HTMLDivElement | null>(null);
   const state = useRef({ tx: 0, ty: 0, cx: 0, cy: 0, raf: 0 });
   const MAX = 6;
