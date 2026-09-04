@@ -26,13 +26,21 @@ export default function Contact() {
           Let&rsquo;s talk.
         </Reveal>
 
-        <Reveal className="mt-7">
+        <Reveal className="mt-7 flex flex-wrap items-center gap-4">
           <MagneticButton
             href={mailHref}
             className="inline-flex items-center gap-2 rounded-full bg-gradient-to-br from-accent-1 to-accent-2 px-6 py-3 font-mono text-sm font-semibold text-[#05060b] shadow-[0_8px_30px_-8px_rgba(109,139,255,0.55)]"
           >
             {profile.contact.email}
           </MagneticButton>
+          <a
+            href={profile.contact.cv}
+            target="_blank"
+            rel="noopener"
+            className="inline-flex items-center gap-2 rounded-full border border-glass-border px-6 py-3 text-sm font-semibold transition-colors hover:bg-glass hover:border-accent-3"
+          >
+            Download CV
+          </a>
         </Reveal>
 
         <Reveal as="ul" className="mt-12 grid gap-3 border-t border-line pt-7">

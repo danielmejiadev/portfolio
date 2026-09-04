@@ -11,6 +11,7 @@ export const profile = {
     phoneHref: "+573126140708",
     github: "https://github.com/danielmejiadev",
     linkedin: "https://linkedin.com/in/danielmejiadev",
+    cv: "https://drive.google.com/file/d/1gV8rvPEpDOQIa4w7wr69sr7pmsettH3G/view?usp=drive_link",
   },
   mailSubject: "Let's talk — Senior/Lead Software Engineer role",
 } as const;

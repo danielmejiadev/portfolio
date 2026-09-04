@@ -13,6 +13,7 @@ const items: PaletteItem[] = [
   { id: "trajectory", label: "Trajectory", hint: "Timeline & education", href: "#trajectory" },
   { id: "oss", label: "Open source", hint: "Maintained projects", href: "#oss" },
   { id: "contact", label: "Contact", hint: "Get in touch", href: "#contact" },
+  { id: "cv", label: "Download CV", hint: "PDF, opens in Google Drive", href: profile.contact.cv },
   { id: "github", label: "Open GitHub", hint: profile.contact.github.replace("https://", ""), href: profile.contact.github },
   { id: "linkedin", label: "Open LinkedIn", hint: profile.contact.linkedin.replace("https://", ""), href: profile.contact.linkedin },
   { id: "email", label: "Email me", hint: profile.contact.email, href: `mailto:${profile.contact.email}?subject=${encodeURIComponent(profile.mailSubject)}` },

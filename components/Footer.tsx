@@ -9,6 +9,9 @@ export default function Footer() {
           © <FooterYear /> {profile.name}.
         </p>
         <div className="flex gap-5">
+          <a href={profile.contact.cv} target="_blank" rel="noopener" className="hover:text-ink">
+            CV
+          </a>
           <a href={profile.contact.github} target="_blank" rel="noopener" className="hover:text-ink">
             GitHub
           </a>
