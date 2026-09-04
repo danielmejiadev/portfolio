@@ -147,14 +147,14 @@ export const education = [
   { title: "Bootcamps", meta: "Git Expert; React & React Native Expert (Platzi); NodeCamp — 2017–2019" },
 ] as const;
 
-export type OssProject = { name: string; description: string; since: string };
+export type OssProject = { name: string; description: string; since: string; url: string };
 
 export const ossProjects: OssProject[] = [
-  { name: "React", description: "Contributor — issue resolution in React's core library.", since: "2018 – Present" },
-  { name: "React Native Gifted Chat", description: "Contributor — migrated the library to Hooks, Context, and native React/React Native animations.", since: "2019 – Present" },
-  { name: "React Hooks Util", description: "Creator & lead maintainer — a set of reusable React hooks.", since: "2020 – Present" },
-  { name: "Stripe Client JS", description: "Creator & lead maintainer — a JavaScript client for the Stripe API.", since: "2020 – Present" },
-  { name: "Spring Boot Utilities", description: "Creator & lead maintainer — reusable utilities for Spring Boot in Java.", since: "2018 – Present" },
-  { name: "React Native Components", description: "Creator & lead maintainer — a pack of reusable, customizable React Native components.", since: "2019 – Present" },
-  { name: "React Native Chatting", description: "Creator & lead maintainer — React Native utilities for chat UI and server connection.", since: "2020 – Present" },
+  { name: "React", description: "Contributor — issue resolution in React's core library.", since: "2018 – Present", url: "https://github.com/facebook/react" },
+  { name: "React Native Gifted Chat", description: "Contributor — migrated the library to Hooks, Context, and native React/React Native animations.", since: "2019 – Present", url: "https://github.com/FaridSafi/react-native-gifted-chat" },
+  { name: "React Hooks Util", description: "Creator & lead maintainer — a set of reusable React hooks.", since: "2020 – Present", url: "https://github.com/danielmejiadev/react-hooks-util" },
+  { name: "Stripe Client JS", description: "Creator & lead maintainer — a JavaScript client for the Stripe API.", since: "2020 – Present", url: "https://github.com/danielmejiadev/stripe-client-js" },
+  { name: "Spring Boot Utilities", description: "Creator & lead maintainer — reusable utilities for Spring Boot in Java.", since: "2018 – Present", url: "https://github.com/danielmejiadev" },
+  { name: "React Native Components", description: "Creator & lead maintainer — a pack of reusable, customizable React Native components.", since: "2019 – Present", url: "https://github.com/danielmejiadev/react-native-components-kit" },
+  { name: "React Native Chatting", description: "Creator & lead maintainer — React Native utilities for chat UI and server connection.", since: "2020 – Present", url: "https://github.com/danielmejiadev/react-native-chatting" },
 ];

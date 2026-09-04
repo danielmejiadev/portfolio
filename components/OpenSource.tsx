@@ -24,7 +24,7 @@ export default function OpenSource() {
           {ossProjects.map((p) => (
             <Reveal key={p.name}>
               <TiltCard className="glass-card h-full rounded-2xl p-6 transition-colors">
-                <a href={profile.contact.github} target="_blank" rel="noopener" className="block">
+                <a href={p.url} target="_blank" rel="noopener" className="block">
                   <h4 className="text-base font-semibold">{p.name}</h4>
                   <p className="mt-2 text-sm leading-relaxed text-ink-faint">{p.description}</p>
                   <span className="mt-2 inline-block font-mono text-xs text-accent-3">{p.since}</span>
