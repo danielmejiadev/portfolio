@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import clsx from "clsx";
 import { profile } from "@/lib/data";
 import MagneticButton from "./MagneticButton";
 
@@ -18,9 +19,10 @@ export default function NavBar() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
-        scrolled ? "border-line bg-bg/70 backdrop-blur-md" : "border-transparent"
-      }`}
+      className={clsx("fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300", {
+        "border-line bg-bg/70 backdrop-blur-md": scrolled,
+        "border-transparent": !scrolled,
+      })}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-8">
         <a href="#top" aria-label="Daniel Mejía — home" className="font-display text-lg font-bold">
