@@ -40,10 +40,10 @@ export default function About() {
         <Reveal className="glass-card rounded-2xl p-7">
           <h3 className="mb-4 text-base font-semibold">Target roles</h3>
           <ul className="grid gap-2.5 text-sm text-ink-dim">
-            {targetRoles.map((r) => (
-              <li key={r} className="relative pl-4">
+            {targetRoles.map((role) => (
+              <li key={role} className="relative pl-4">
                 <span className="absolute left-0 text-accent-3">→</span>
-                {r}
+                {role}
               </li>
             ))}
           </ul>

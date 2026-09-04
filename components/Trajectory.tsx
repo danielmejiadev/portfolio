@@ -25,9 +25,9 @@ export default function Trajectory() {
         <Reveal className="glass-card mt-10 rounded-2xl p-7">
           <h3 className="mb-4 text-base font-semibold">Education &amp; certifications</h3>
           <ul className="grid gap-2 text-sm text-ink-dim">
-            {education.map((e) => (
-              <li key={e.title}>
-                <strong className="text-ink">{e.title}</strong> — {e.meta}
+            {education.map((entry) => (
+              <li key={entry.title}>
+                <strong className="text-ink">{entry.title}</strong> — {entry.meta}
               </li>
             ))}
           </ul>

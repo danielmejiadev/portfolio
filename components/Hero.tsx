@@ -48,13 +48,13 @@ export default function Hero() {
           as="dl"
           className="mt-14 grid max-w-xl grid-cols-3 gap-5 border-t border-line pt-9"
         >
-          {stats.map((s) => (
-            <div key={s.label}>
+          {stats.map((stat) => (
+            <div key={stat.label}>
               <dt className="font-display text-2xl font-bold sm:text-3xl">
-                <CountUp target={s.value} />
-                {s.suffix}
+                <CountUp target={stat.value} />
+                {stat.suffix}
               </dt>
-              <dd className="mt-1 text-xs text-ink-faint">{s.label}</dd>
+              <dd className="mt-1 text-xs text-ink-faint">{stat.label}</dd>
             </div>
           ))}
         </Reveal>

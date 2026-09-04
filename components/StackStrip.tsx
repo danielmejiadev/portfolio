@@ -10,10 +10,10 @@ export default function StackStrip() {
           Core stack
         </Reveal>
         <Reveal className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {stackGroups.map((g) => (
-            <div key={g.name}>
-              <h4 className="text-sm font-semibold">{g.name}</h4>
-              <p className="mt-1.5 text-sm leading-relaxed text-ink-faint">{g.items}</p>
+          {stackGroups.map((group) => (
+            <div key={group.name}>
+              <h4 className="text-sm font-semibold">{group.name}</h4>
+              <p className="mt-1.5 text-sm leading-relaxed text-ink-faint">{group.items}</p>
             </div>
           ))}
         </Reveal>

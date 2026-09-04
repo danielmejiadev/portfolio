@@ -15,33 +15,33 @@ export default function CaseStudies() {
         </Reveal>
 
         <div className="mt-10 grid gap-6">
-          {caseStudies.map((c) => (
-            <Reveal key={c.company}>
+          {caseStudies.map((caseStudy) => (
+            <Reveal key={caseStudy.company}>
               <TiltCard className="glass-card rounded-2xl p-6 sm:p-9">
                 <div className="mb-5 flex flex-wrap items-start justify-between gap-4">
                   <div>
-                    <h3 className="text-xl font-semibold sm:text-2xl">{c.company}</h3>
+                    <h3 className="text-xl font-semibold sm:text-2xl">{caseStudy.company}</h3>
                     <p className="mt-1 text-sm text-ink-faint">
-                      {c.role} · {c.dates}
+                      {caseStudy.role} · {caseStudy.dates}
                     </p>
                   </div>
                   <span className="whitespace-nowrap rounded-full border border-glass-border px-3 py-1 font-mono text-xs text-accent-3">
-                    {c.badge}
+                    {caseStudy.badge}
                   </span>
                 </div>
 
                 <p className="mt-3 text-[0.96rem] text-ink-dim">
-                  <strong className="font-display font-semibold text-ink">Problem.</strong> {c.problem}
+                  <strong className="font-display font-semibold text-ink">Problem.</strong> {caseStudy.problem}
                 </p>
                 <p className="mt-3 text-[0.96rem] text-ink-dim">
-                  <strong className="font-display font-semibold text-ink">Built.</strong> {c.build}
+                  <strong className="font-display font-semibold text-ink">Built.</strong> {caseStudy.build}
                 </p>
                 <p className="mt-3 text-[0.96rem] text-ink-dim">
-                  <strong className="font-display font-semibold text-ink">Result.</strong> {c.result}
+                  <strong className="font-display font-semibold text-ink">Result.</strong> {caseStudy.result}
                 </p>
 
                 <ul className="mt-5 flex flex-wrap gap-2">
-                  {c.stack.map((tag) => (
+                  {caseStudy.stack.map((tag) => (
                     <li
                       key={tag}
                       className="rounded-full border border-glass-border px-2.5 py-1 font-mono text-xs text-ink-dim"

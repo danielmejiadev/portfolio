@@ -5,7 +5,7 @@ import MagneticButton from "./MagneticButton";
 export default function Contact() {
   const mailHref = `mailto:${profile.contact.email}?subject=${encodeURIComponent(profile.mailSubject)}`;
 
-  const rows = [
+  const contactRows = [
     { label: "Phone", value: profile.contact.phone, href: `tel:${profile.contact.phoneHref}` },
     { label: "GitHub", value: "github.com/danielmejiadev", href: profile.contact.github },
     { label: "LinkedIn", value: "linkedin.com/in/danielmejiadev", href: profile.contact.linkedin },
@@ -44,15 +44,15 @@ export default function Contact() {
         </Reveal>
 
         <Reveal as="ul" className="mt-12 grid gap-3 border-t border-line pt-7">
-          {rows.map((r) => (
-            <li key={r.label} className="flex items-center justify-between gap-4 border-b border-dashed border-line pb-3 text-sm last:border-b-0">
-              <span className="font-mono text-xs tracking-wide text-ink-faint uppercase">{r.label}</span>
-              {r.href ? (
-                <a href={r.href} target={r.href.startsWith("http") ? "_blank" : undefined} rel="noopener" className="transition-colors hover:text-accent-3">
-                  {r.value}
+          {contactRows.map((row) => (
+            <li key={row.label} className="flex items-center justify-between gap-4 border-b border-dashed border-line pb-3 text-sm last:border-b-0">
+              <span className="font-mono text-xs tracking-wide text-ink-faint uppercase">{row.label}</span>
+              {row.href ? (
+                <a href={row.href} target={row.href.startsWith("http") ? "_blank" : undefined} rel="noopener" className="transition-colors hover:text-accent-3">
+                  {row.value}
                 </a>
               ) : (
-                <span>{r.value}</span>
+                <span>{row.value}</span>
               )}
             </li>
           ))}

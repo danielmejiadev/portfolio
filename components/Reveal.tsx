@@ -9,42 +9,42 @@ interface RevealProps {
 }
 
 export default function Reveal({ children, className = "", as = "div" }: RevealProps) {
-  const ref = useRef<HTMLElement | null>(null);
+  const elementRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
+    const element = elementRef.current;
+    if (!element) return;
 
-    const io = new IntersectionObserver(
+    const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("is-revealed");
-            io.unobserve(entry.target);
+            observer.unobserve(entry.target);
           }
         });
       },
       { threshold: 0.01, rootMargin: "0px 0px -2% 0px" }
     );
-    io.observe(el);
+    observer.observe(element);
 
     // Safety net: reveal anything still hidden above the fold after 6s
-    const t = setTimeout(() => {
-      if (!el.classList.contains("is-revealed") && el.getBoundingClientRect().top < window.innerHeight) {
-        el.classList.add("is-revealed");
+    const safetyTimeoutId = setTimeout(() => {
+      if (!element.classList.contains("is-revealed") && element.getBoundingClientRect().top < window.innerHeight) {
+        element.classList.add("is-revealed");
       }
     }, 6000);
 
     return () => {
-      io.disconnect();
-      clearTimeout(t);
+      observer.disconnect();
+      clearTimeout(safetyTimeoutId);
     };
   }, []);
 
   const Tag = as as unknown as "div";
 
   return (
-    <Tag ref={ref as React.RefObject<HTMLDivElement>} data-reveal className={className}>
+    <Tag ref={elementRef as React.RefObject<HTMLDivElement>} data-reveal className={className}>
       {children}
     </Tag>
   );

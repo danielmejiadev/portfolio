@@ -1,42 +1,43 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { easeOutCubic } from "@/utils/motion";
 
 interface CountUpProps {
   target: number;
 }
 
+const ANIMATION_DURATION_MS = 1300;
+
 export default function CountUp({ target }: CountUpProps) {
-  const [value, setValue] = useState(0);
-  const ref = useRef<HTMLSpanElement | null>(null);
+  const [displayedValue, setDisplayedValue] = useState(0);
+  const spanRef = useRef<HTMLSpanElement | null>(null);
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
+    const spanElement = spanRef.current;
+    if (!spanElement) return;
 
-    const io = new IntersectionObserver(
+    const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
-          io.unobserve(entry.target);
+          observer.unobserve(entry.target);
 
-          const duration = 1300;
-          const start = performance.now();
-          const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
+          const startTime = performance.now();
 
-          function tick(now: number) {
-            const t = Math.min(1, (now - start) / duration);
-            setValue(Math.round(easeOut(t) * target));
-            if (t < 1) requestAnimationFrame(tick);
+          function animateFrame(now: number) {
+            const elapsedFraction = Math.min(1, (now - startTime) / ANIMATION_DURATION_MS);
+            setDisplayedValue(Math.round(easeOutCubic(elapsedFraction) * target));
+            if (elapsedFraction < 1) requestAnimationFrame(animateFrame);
           }
-          requestAnimationFrame(tick);
+          requestAnimationFrame(animateFrame);
         });
       },
       { threshold: 0.5 }
     );
-    io.observe(el);
-    return () => io.disconnect();
+    observer.observe(spanElement);
+    return () => observer.disconnect();
   }, [target]);
 
-  return <span ref={ref}>{value}</span>;
+  return <span ref={spanRef}>{displayedValue}</span>;
 }

@@ -26,13 +26,13 @@ export default function OpenSource() {
         </Reveal>
 
         <div className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {ossProjects.map((p) => (
-            <Reveal key={p.name}>
+          {ossProjects.map((project) => (
+            <Reveal key={project.name}>
               <TiltCard className="glass-card h-full rounded-2xl p-6 transition-colors">
-                <a href={p.url} target="_blank" rel="noopener" className="block">
-                  <h4 className="text-base font-semibold">{p.name}</h4>
-                  <p className="mt-2 text-sm leading-relaxed text-ink-faint">{p.description}</p>
-                  <span className="mt-2 inline-block font-mono text-xs text-accent-3">{p.since}</span>
+                <a href={project.url} target="_blank" rel="noopener" className="block">
+                  <h4 className="text-base font-semibold">{project.name}</h4>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-faint">{project.description}</p>
+                  <span className="mt-2 inline-block font-mono text-xs text-accent-3">{project.since}</span>
                 </a>
               </TiltCard>
             </Reveal>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import CommandPalette from "@/components/CommandPalette";
+import Providers from "./providers";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -65,8 +66,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        {children}
-        <CommandPalette />
+        <Providers>
+          {children}
+          <CommandPalette />
+        </Providers>
       </body>
     </html>
   );

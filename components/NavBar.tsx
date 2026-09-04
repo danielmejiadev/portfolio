@@ -4,24 +4,25 @@ import { useEffect, useState } from "react";
 import clsx from "clsx";
 import { profile } from "@/lib/data";
 import { useActiveSection } from "@/hooks/useActiveSection";
+import { dispatchOpenCommandPalette } from "@/utils/commandPalette";
 import MagneticButton from "./MagneticButton";
 
-const links = [
-  { id: "work", label: "Work" },
-  { id: "trajectory", label: "Trajectory" },
-  { id: "about", label: "About" },
-  { id: "contact", label: "Contact" },
+const navLinks = [
+  { sectionId: "work", label: "Work" },
+  { sectionId: "trajectory", label: "Trajectory" },
+  { sectionId: "about", label: "About" },
+  { sectionId: "contact", label: "Contact" },
 ];
 
 export default function NavBar() {
-  const [scrolled, setScrolled] = useState(false);
-  const active = useActiveSection(links.map((l) => l.id));
+  const [isScrolled, setIsScrolled] = useState(false);
+  const activeSectionId = useActiveSection(navLinks.map((link) => link.sectionId));
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const updateScrolledState = () => setIsScrolled(window.scrollY > 60);
+    updateScrolledState();
+    window.addEventListener("scroll", updateScrolledState, { passive: true });
+    return () => window.removeEventListener("scroll", updateScrolledState);
   }, []);
 
   const mailHref = `mailto:${profile.contact.email}?subject=${encodeURIComponent(profile.mailSubject)}`;
@@ -29,8 +30,8 @@ export default function NavBar() {
   return (
     <header
       className={clsx("fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300", {
-        "border-line bg-bg/70 backdrop-blur-md": scrolled,
-        "border-transparent": !scrolled,
+        "border-line bg-bg/70 backdrop-blur-md": isScrolled,
+        "border-transparent": !isScrolled,
       })}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-8">
@@ -39,17 +40,17 @@ export default function NavBar() {
         </a>
 
         <nav aria-label="Primary" className="hidden gap-7 text-sm sm:flex">
-          {links.map((l) => (
+          {navLinks.map((link) => (
             <a
-              key={l.id}
-              href={`#${l.id}`}
-              aria-current={active === l.id ? "true" : undefined}
+              key={link.sectionId}
+              href={`#${link.sectionId}`}
+              aria-current={activeSectionId === link.sectionId ? "true" : undefined}
               className={clsx("transition-colors hover:text-ink", {
-                "text-ink": active === l.id,
-                "text-ink-dim": active !== l.id,
+                "text-ink": activeSectionId === link.sectionId,
+                "text-ink-dim": activeSectionId !== link.sectionId,
               })}
             >
-              {l.label}
+              {link.label}
             </a>
           ))}
         </nav>
@@ -57,7 +58,7 @@ export default function NavBar() {
         <div className="flex items-center gap-3">
           <button
             type="button"
-            onClick={() => window.dispatchEvent(new Event("open-command-palette"))}
+            onClick={dispatchOpenCommandPalette}
             aria-label="Open command palette"
             className="hidden items-center gap-1.5 rounded-full border border-glass-border px-3 py-2 font-mono text-xs text-ink-faint transition-colors hover:bg-glass hover:text-ink sm:flex"
           >

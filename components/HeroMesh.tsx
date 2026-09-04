@@ -1,42 +1,52 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { lerpTowards } from "@/utils/motion";
+
+const FOLLOW_SMOOTHING = 0.05;
+const INITIAL_POSITION_PERCENT = { x: 50, y: 40 };
 
 /** Mouse-reactive gradient mesh, scoped to its parent (a `position: relative` section). */
 export default function HeroMesh() {
-  const ref = useRef<HTMLDivElement | null>(null);
+  const meshRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
+    const meshElement = meshRef.current;
+    if (!meshElement) return;
     if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    const parent = el.parentElement;
-    if (!parent) return;
+    const parentSection = meshElement.parentElement;
+    if (!parentSection) return;
 
-    let mx = 50, my = 40, tx = 50, ty = 40, raf = 0;
+    let currentX = INITIAL_POSITION_PERCENT.x;
+    let currentY = INITIAL_POSITION_PERCENT.y;
+    let targetX = INITIAL_POSITION_PERCENT.x;
+    let targetY = INITIAL_POSITION_PERCENT.y;
+    let animationFrameId = 0;
 
-    function onMove(e: MouseEvent) {
-      const r = parent!.getBoundingClientRect();
-      tx = ((e.clientX - r.left) / r.width) * 100;
-      ty = ((e.clientY - r.top) / r.height) * 100;
+    function handleMouseMove(event: MouseEvent) {
+      const bounds = parentSection!.getBoundingClientRect();
+      targetX = ((event.clientX - bounds.left) / bounds.width) * 100;
+      targetY = ((event.clientY - bounds.top) / bounds.height) * 100;
     }
-    function frame() {
-      mx += (tx - mx) * 0.05;
-      my += (ty - my) * 0.05;
-      el!.style.setProperty("--mx", `${mx}%`);
-      el!.style.setProperty("--my", `${my}%`);
-      raf = requestAnimationFrame(frame);
+
+    function animateTowardsTarget() {
+      currentX = lerpTowards(currentX, targetX, FOLLOW_SMOOTHING);
+      currentY = lerpTowards(currentY, targetY, FOLLOW_SMOOTHING);
+      meshElement!.style.setProperty("--mx", `${currentX}%`);
+      meshElement!.style.setProperty("--my", `${currentY}%`);
+      animationFrameId = requestAnimationFrame(animateTowardsTarget);
     }
-    parent.addEventListener("mousemove", onMove);
-    raf = requestAnimationFrame(frame);
+
+    parentSection.addEventListener("mousemove", handleMouseMove);
+    animationFrameId = requestAnimationFrame(animateTowardsTarget);
 
     return () => {
-      parent.removeEventListener("mousemove", onMove);
-      cancelAnimationFrame(raf);
+      parentSection.removeEventListener("mousemove", handleMouseMove);
+      cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
-  return <div ref={ref} className="hero-mesh" aria-hidden="true" />;
+  return <div ref={meshRef} className="hero-mesh" aria-hidden="true" />;
 }
