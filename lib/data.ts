@@ -15,6 +15,17 @@ export const profile = {
   mailSubject: "Let's talk — Senior/Lead Software Engineer role",
 } as const;
 
+// Seeded from the real GitHub API response (users/danielmejiadev) so the
+// numbers are correct even before the client-side refresh in GithubStats
+// runs. Update the seed occasionally — it's a fallback, not the source of
+// truth; the live fetch always wins when it succeeds.
+export const githubStatsSeed = {
+  username: "danielmejiadev",
+  followers: 25,
+  publicRepos: 35,
+  memberSince: 2016,
+} as const;
+
 export const stats = [
   { value: 12, suffix: "+", label: "years shipping production software" },
   { value: 20, suffix: "M+", label: "customers served (GoDaddy Website Builder)" },

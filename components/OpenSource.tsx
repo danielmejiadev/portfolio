@@ -1,6 +1,7 @@
 import { ossProjects, profile } from "@/lib/data";
 import Reveal from "./Reveal";
 import TiltCard from "./TiltCard";
+import GithubStats from "./GithubStats";
 
 export default function OpenSource() {
   return (
@@ -18,6 +19,10 @@ export default function OpenSource() {
             github.com/danielmejiadev
           </a>
           .
+        </Reveal>
+
+        <Reveal className="mt-5">
+          <GithubStats />
         </Reveal>
 
         <div className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
